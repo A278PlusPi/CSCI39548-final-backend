@@ -37,15 +37,18 @@ router.get('/:id', ash(async(req, res) => {
   res.status(200).json(campus);  // Status code 200 OK - request succeeded
 }));
 
-/* DELETE CAMPUS */
-router.delete('/:id', ash(async(req, res) => {
-  await Campus.destroy({
+
+/* DELETE campus */
+router.delete('/:id', function(req, res, next) {
+  Campus.destroy({
     where: {
       id: req.params.id
     }
-  });
-  res.status(200).json("Deleted a campus!");
-}));
+  })
+    .then(() => res.status(200).json("Deleted a student!"))
+    .catch(err => next(err));
+});
+
 
 /* ADD NEW CAMPUS */
 router.post('/', ash(async(req, res) => {
