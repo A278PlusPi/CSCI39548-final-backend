@@ -19,16 +19,17 @@ const Student = db.define("student", {
 
   imageUrl: {
     type: Sequelize.STRING,
-    
+    allowNull: true
   },
 
   gpa: {
     type: Sequelize.DOUBLE,
-    
+    allowNull: true
   },
 
   email: {
     type: Sequelize.STRING,
+    allowNull: false
     
   }
 });
